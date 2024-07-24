@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Control</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="front-end/notif.html">Notifications</a></li>
+            <li><a href="front-end/profile.html">Profile</a></li>
+        </ul>
+    </nav>
+
+    <section id="status">
+        <h2>Current Status</h2>
+        <p id="room-status">Room 1: No one is in the room</p>
+        <p id="brightness-status">Outside Brightness: 75%</p>
+        <p id="temperature-status">Temperature in Sala: 25°C</p>
+    </section>
+
+    <section id="controls">
+        <h2>Controls</h2>
+        <div>
+            <button id="sala-light-btn" onclick="toggleDevice('sala-light')">Toggle Sala Light</button>
+            <span id="sala-light-status">Status: Off</span>
+        </div>
+        <div>
+            <button id="room-light-btn" onclick="toggleDevice('room-light')">Toggle Room Light</button>
+            <span id="room-light-status">Status: Off</span>
+        </div>
+        <div>
+            <button id="outside-light-btn" onclick="toggleDevice('outside-light')">Toggle Outside Light</button>
+            <span id="outside-light-status">Status: Off</span>
+        </div>
+        <div>
+            <button id="door-lock-1-btn" onclick="toggleDevice('door-lock-1')">Toggle Door Lock 1</button>
+            <span id="door-lock-1-status">Status: Locked</span>
+        </div>
+        <div>
+            <button id="door-lock-2-btn" onclick="toggleDevice('door-lock-2')">Toggle Door Lock 2</button>
+            <span id="door-lock-2-status">Status: Locked</span>
+        </div>
+        <div>
+            <button id="fan-btn" onclick="toggleDevice('fan')">Toggle Fan</button>
+            <span id="fan-status">Status: Off</span>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
