@@ -5,41 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartHome Control</title>
     <link rel="stylesheet" href="css/indexstyle.css">
-    <script src="js/script.js" defer></script>
 </head>
 <body>
 
     <div class="container">
         <h2>Home Automation</h2>
-
-        <div class="login-box">
-            <!-- Login Form -->
-            <div id="login-form" class="form-section">
-                <form action="login.php" method="post">
-                    <label for="login-email">Email:</label>
-                    <input type="email" id="login-email" name="email" required>
-                    <label for="login-password">Password:</label>
-                    <input type="password" id="login-password" name="password" required>
-                    <button type="submit">Login</button>
-                </form>
-            </div>
-
-            <!-- Sign Up Form -->
-            <div id="signup-form" class="form-section" style="display: none;">
-                <form action="signup.php" method="post">
-                    <label for="first-name">First Name:</label>
-                    <input type="text" id="first-name" name="first_name" required>
-                    <label for="last-name">Last Name:</label>
-                    <input type="text" id="last-name" name="last_name" required>
-                    <label for="signup-email">Email:</label>
-                    <input type="email" id="signup-email" name="email" required>
-                    <label for="signup-password">Password:</label>
-                    <input type="password" id="signup-password" name="password" required>
-                    <button type="submit">Sign Up</button>
-                </form>
-            </div>
+        <div class="buttons">
+            <a class="button sign-up" href="#" id="signUpBtn">Sign Up</a>
+            <a class="button log-in" href="#" id="logInBtn">Log In</a>
         </div>
     </div>
 
+    <div id="signUpForm" class="form-container">
+        <form id="signUpFormContent">
+            <h3>Sign Up</h3>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <div id="logInForm" class="form-container">
+        <form id="logInFormContent">
+            <h3>Log In</h3>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+
+    <script src="js/clickable.js"></script>
 </body>
 </html>
