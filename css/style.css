@@ -91,7 +91,7 @@ nav ul li a:hover {
 .icon-container:hover {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
   transform: scale(1.05); /* Slightly enlarge */
-  background-color: #9eb4ca; /* Light background change */
+  background-color: #d0dbe5; /* Light background change */
 }
 
 /* Icon image styling */
@@ -125,4 +125,37 @@ nav ul li a:hover {
   .icon-container p {
       font-size: 0.9rem;
   }
+}
+
+
+/* Status Wrapper */
+.status-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+/* Status Indicator Styling */
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #e74c3c; /* Default red color for OFF */
+  margin-right: 0.5rem;
+}
+
+/* Status ON styling */
+.icon-container[data-status="on"] .status-indicator {
+  background-color: #2ecc71; /* Green color for ON */
+}
+
+/* Status OFF styling */
+.icon-container[data-status="off"] .status-indicator {
+  background-color: #e74c3c; /* Red color for OFF */
+}
+
+/* Status text styling */
+.status-text {
+  font-size: 0.9rem;
+  color: #333;
 }

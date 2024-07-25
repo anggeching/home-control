@@ -1,13 +1,11 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const fanIcon = document.getElementById('fan-icon');
-    const fanStatus = document.getElementById('fan-status');
-    
-    fanIcon.addEventListener('click', function() {
-        fanIcon.classList.toggle('active');
-        if (fanIcon.classList.contains('active')) {
-            fanStatus.textContent = 'Status: On';
-        } else {
-            fanStatus.textContent = 'Status: Off';
-        }
+document.addEventListener('DOMContentLoaded', () => {
+    const containers = document.querySelectorAll('.icon-container');
+  
+    containers.forEach(container => {
+      container.addEventListener('click', () => {
+        const isOff = container.getAttribute('data-status') === 'off';
+        container.setAttribute('data-status', isOff ? 'on' : 'off');
+        container.querySelector('.status-text').textContent = isOff ? 'ON' : 'OFF';
+      });
     });
-});
+  });
