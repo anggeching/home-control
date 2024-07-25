@@ -5,14 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartHome Control</title>
     <link rel="stylesheet" href="css/indexstyle.css">
+    <script defer src="js/script.js"></script>
 </head>
 <body>
 
     <div class="container">
         <h2>Home Automation</h2>
-        <div class="buttons">
-            <a class="button sign-up" href="#">Sign Up</a>
-            <a class="button log-in" href="#">Log In</a>
+        <div id="auth-container" class="auth-container">
+            <!-- Login Form -->
+            <div id="login-form" class="form">
+                <h3>Log In</h3>
+                <form>
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit">Log In</button>
+                </form>
+                <p>Don't have an account? <a id="show-signup" href="#">Sign Up</a></p>
+            </div>
+            
+            <!-- Sign Up Form -->
+            <div id="signup-form" class="form hidden">
+                <h3>Sign Up</h3>
+                <form>
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <p>Already have an account? <a id="show-login" href="#">Log In</a></p>
+            </div>
         </div>
     </div>
 
