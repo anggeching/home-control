@@ -128,6 +128,9 @@ nav ul li a:hover {
 }
 
 
+
+
+
 /* Status Wrapper */
 .status-wrapper {
   display: flex;
@@ -162,4 +165,58 @@ nav ul li a:hover {
   font-size: 0.9rem;
   color: #333;
   font-weight: bold; /* Added bold text */
+}
+
+
+
+
+
+/* Notifications Section Styling */
+.notifications-section {
+  margin: 2rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.notifications-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.notifications-section th, .notifications-section td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.notifications-section th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.notifications-section tr:hover {
+  background-color: #f9f9f9;
+}
+
+.notifications-section td:last-child {
+  text-align: right;
+}
+
+#clear-notifications {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.5rem 1rem;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#clear-notifications:hover {
+  background-color: #c0392b;
 }
