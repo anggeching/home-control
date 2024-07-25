@@ -142,6 +142,9 @@ nav ul li a:hover {
   border-radius: 50%;
   background-color: #e74c3c; /* Default red color for OFF */
   margin-right: 0.5rem;
+  border: 2px solid black; /* Added black border */
+  margin-top: 0.37rem; /* Adjust this value to move the indicator lower */
+  margin-right: 0.20rem; /* Adjust this value to move the indicator right */
 }
 
 /* Status ON styling */
@@ -158,4 +161,5 @@ nav ul li a:hover {
 .status-text {
   font-size: 0.9rem;
   color: #333;
+  font-weight: bold; /* Added bold text */
 }
