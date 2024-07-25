@@ -4,66 +4,61 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-    position: relative;
-    overflow: hidden;
-}
-
-body::before {
-    content: "";
-    background-image: url('../assets/img/background2.jpg'); /* Add your image path here */
+    background-image: url('../assets/img/background3.jpg'); /* Add your image path here */
     background-size: cover; /* Ensure the background image covers the whole page */
-    background-position: center; /* Center the background image */
+    background-position: -150px center; /* Shift background image to the left by 50px */
     background-attachment: fixed; /* Make the background image fixed when scrolling */
-    opacity: 0.5; /* Adjust the transparency here */
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    min-height: 100vh; /* Full viewport height */
 }
 
-.container {
-    background-color: rgba(255, 255, 255, 0.5); /* Adjust the transparency here */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 80px auto 0; /* Increased margin-top to account for fixed nav height */
-    max-width: 300px;
-    padding: 60px;
+h1.tagline {
+    position: absolute; /* Absolute positioning */
+    top: 20px; /* Distance from the top of the page */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    margin: 0; /* Remove default margin */
+    font-size: 30px; /* Adjust font size */
+    color: #b7afaf;
+    line-height: 1.5; /* Adjust line height */
 }
 
-.container h2 {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
+
+h2 {
+    position: absolute; /* Absolute positioning */
+    top: 1px; /* Distance from the top of the page */
+    left: 20px; /* Distance from the left of the page */
+    font-size: 30px; /* Adjust font size */
+    color: #b7afaf;
 }
 
 .buttons {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center buttons horizontally */
+    gap: 20px; /* Space between buttons */
 }
 
 .button {
     display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
+    padding: 15px 30px;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 18px;
     text-decoration: none;
-    color: #fff;
+    color: #070707; /* Change text color for better visibility */
     cursor: pointer;
+    width: 150px; /* Fixed width for buttons */
+    text-align: center; /* Center text in buttons */
 }
 
 .sign-up {
-    background-color: #7d9fc0;
+    background-color: #5a9abf;
 }
 
 .log-in {
-    background-color: #7d9fc0;
-}
-
-.tagline {
-    margin-top: 100px; /* Adjusted to account for the fixed navbar */
-    font-size: 40px;
-    color: #333;
-    line-height: 1.5; /* Adjust this value to increase or decrease the spacing */
+    background-color: #5a9abf; /* Slightly different color for distinction */
 }
