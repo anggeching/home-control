@@ -5,34 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartHome Control</title>
     <link rel="stylesheet" href="css/indexstyle.css">
-    <script defer src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
 </head>
 <body>
 
     <div class="container">
         <h2>Home Automation</h2>
-        <div id="auth-container" class="auth-container">
+
+        <div class="form-container">
             <!-- Login Form -->
-            <div id="login-form" class="form">
-                <h3>Log In</h3>
-                <form>
-                    <input type="email" placeholder="Email" required>
-                    <input type="password" placeholder="Password" required>
-                    <button type="submit">Log In</button>
+            <div id="login-form" class="form-section">
+                <form action="login.php" method="post">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" name="email" required>
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" name="password" required>
+                    <button type="submit">Login</button>
                 </form>
-                <p>Don't have an account? <a id="show-signup" href="#">Sign Up</a></p>
             </div>
-            
+
             <!-- Sign Up Form -->
-            <div id="signup-form" class="form hidden">
-                <h3>Sign Up</h3>
-                <form>
-                    <input type="text" placeholder="Full Name" required>
-                    <input type="email" placeholder="Email" required>
-                    <input type="password" placeholder="Password" required>
+            <div id="signup-form" class="form-section" style="display: none;">
+                <form action="signup.php" method="post">
+                    <label for="first-name">First Name:</label>
+                    <input type="text" id="first-name" name="first_name" required>
+                    <label for="last-name">Last Name:</label>
+                    <input type="text" id="last-name" name="last_name" required>
+                    <label for="signup-email">Email:</label>
+                    <input type="email" id="signup-email" name="email" required>
+                    <label for="signup-password">Password:</label>
+                    <input type="password" id="signup-password" name="password" required>
                     <button type="submit">Sign Up</button>
                 </form>
-                <p>Already have an account? <a id="show-login" href="#">Log In</a></p>
             </div>
         </div>
     </div>
