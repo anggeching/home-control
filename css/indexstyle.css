@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    background-image: url('../assets/img/background2.jpg'); /* Add your image path here */
+    background-size: cover; /* Ensure the background image covers the whole page */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; /* Make the background image fixed when scrolling */
+    opacity: 0.5; /* Adjust the transparency here */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.5); /* Adjust the transparency here */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 80px auto 0; /* Increased margin-top to account for fixed nav height */
+    max-width: 300px;
+    padding: 60px;
+}
+
+.container h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.sign-up {
+    background-color: #7d9fc0;
+}
+
+.log-in {
+    background-color: #7d9fc0;
+}
+
+.tagline {
+    margin-top: 100px; /* Adjusted to account for the fixed navbar */
+    font-size: 40px;
+    color: #333;
+    line-height: 1.5; /* Adjust this value to increase or decrease the spacing */
+}
