@@ -1,3 +1,10 @@
+3:19 PM
+Chesca
+Chesca Duatin
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,18 +23,32 @@
         </div>
     </div>
 
+    <?php if(isset($_SESSION['message'])): ?>
+                <div class="alert alert-<?php echo $_SESSION['message']['alert'] ?> msg"><?php echo $_SESSION['message']['text'] ?></div>
+                <script>
+                    (function() {
+                        setTimeout(function(){
+                            document.querySelector('.msg').remove();
+                        },3000)
+                    })();
+                </script>
+            <?php 
+                endif;
+                unset($_SESSION['message']);
+            ?>
+
     <div id="signUpForm" class="form-container">
-        <form id="signUpFormContent">
+        <form action="register_query.php" method="POST" id="signUpFormContent">
             <h3>SIGN UP</h3>
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
+            <input type="text" placeholder="Name" name="name" required>
+            <input type="email" placeholder="Email" name="email" required>
+            <input type="password" placeholder="Password" name="password" required>
             <button type="submit">Sign Up</button>
         </form>
     </div>
 
     <div id="logInForm" class="form-container">
-        <form action="login_query.php" method="POST" id="logInFormContent">
+        <form action="../backend/login_query.php" method="POST" id="logInFormContent">
 
             <h3>LOGIN</h3>
             <input type="text" placeholder="Username" name = "username" required>
