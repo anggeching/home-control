@@ -10,7 +10,7 @@
 ?>
 <html lang="en">
 <head>
-    <title>Home Control</title>
+    <title>SmartHome Control</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
