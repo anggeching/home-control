@@ -27,11 +27,12 @@
     </div>
 
     <div id="logInForm" class="form-container">
-        <form id="logInFormContent">
+        <form action="login_query.php" method="POST" id="logInFormContent">
+
             <h3>LOGIN</h3>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
-            <button type="submit">Login</button>
+            <input type="text" placeholder="Username" name = "username" required>
+            <input type="password" placeholder="Password" name = "password" required>
+            <button type="submit" >Login</button>
         </form>
     </div>
 
