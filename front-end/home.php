@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <?php
-	require 'conn.php'; // connecting to dB
+	require '../dB/conn.php'; // connecting to dB
 	session_start(); 
-	
+	/*
 	if(!ISSET($_SESSION['user'])){ // redirecting user to index if not login properly
 		header('location:../index.php');
 	}
+        */
 ?>
 <html lang="en">
 <head>
@@ -17,7 +18,7 @@
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="notif.html">Notifications</a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li><a href="../backend/logout.php">Logout</a></li>
         </ul>
     </nav>
       
