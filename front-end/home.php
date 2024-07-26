@@ -6,7 +6,7 @@
 	if(!ISSET($_SESSION['user'])){ // redirecting user to index if not login properly
 		header('location:../index.php');
 	}
-        */
+	*/
 ?>
 <html lang="en">
 <head>
@@ -50,71 +50,75 @@
     </header>
 
     <section class="icons-section grid-3x2">
-        <!-- Icon Container 1 -->
-        <div class="icon-container " data-room="0">
-            <img class="icon icon-example-1" src="../assets/img/outdoorlight.png" alt="Example 1">
+        <!-- Icon Containers (Static HTML) -->
+        <!-- Note: The data-room attributes should match the IDs in the database -->
+        <div class="icon-container" data-room="0">
+            <img class="icon icon-example-1" src="../assets/img/outdoorlight.png" alt="Outdoor Light">
             <p>Outdoor Light</p>
             <div class="status-wrapper">
               <span class="status-indicator"></span>
               <p class="status-text">OFF</p>
           </div>
         </div>
-
-        <!-- Icon Container 2 -->
         <div class="icon-container" data-room="1"> 
-            <img class="icon icon-example-2" src="../assets/img/livingroom.png" alt="Example 2">
+            <img class="icon icon-example-2" src="../assets/img/livingroom.png" alt="Living Room Light">
             <p>Living Room Light</p>
             <div class="status-wrapper">
               <span class="status-indicator"></span>
               <p class="status-text">OFF</p>
           </div>
         </div>
-
-
-        <!-- Icon Container 3 -->
         <div class="icon-container" data-room="2">
-            <img class="icon icon-example-3" src="../assets/img/roomlight.png" alt="Example 3">
+            <img class="icon icon-example-3" src="../assets/img/roomlight.png" alt="Room Light">
             <p>Room Light</p>
             <div class="status-wrapper">
               <span class="status-indicator"></span>
               <p class="status-text">OFF</p>
           </div>
         </div>
-
-
-        <!-- Icon Container 4 -->
         <div class="icon-container" data-room="3">
-            <img class="icon icon-example-4" src="../assets/img/doorlock.png" alt="Example 4">
+            <img class="icon icon-example-4" src="../assets/img/doorlock.png" alt="Door Lock 1">
             <p>Door Lock 1</p>
             <div class="status-wrapper">
               <span class="status-indicator"></span>
               <p class="status-text">OFF</p>
           </div>
         </div>
-
-
-        <!-- Icon Container 5 -->
         <div class="icon-container" data-room="4">
-            <img class="icon icon-example-5" src="../assets/img/fan.png" alt="Example 5">
+            <img class="icon icon-example-5" src="../assets/img/fan.png" alt="Fan">
             <p>Fan</p>
             <div class="status-wrapper">
               <span class="status-indicator"></span>
               <p class="status-text">OFF</p>
           </div>
         </div>
-
-
-        <!-- Icon Container 6 -->
         <div class="icon-container" data-room="5">
-            <img class="icon icon-example-6" src="../assets/img/doorlock.png" alt="Example 6">
+            <img class="icon icon-example-6" src="../assets/img/doorlock.png" alt="Door Lock 2">
             <p>Door Lock 2</p>
             <div class="status-wrapper">
               <span class="status-indicator"></span>
               <p class="status-text">OFF</p>
-      </div>
+          </div>
         </div>
-
-        <script src="../js/script.js"></script>
     </section>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // Fetch the current states and update the UI
+        fetch('../dB/states.php')
+            .then(response => response.json())
+            .then(data => {
+                document.querySelectorAll('.icon-container').forEach(container => {
+                    const room = container.getAttribute('data-room');
+                    if (data[room]) {
+                        const { state, name } = data[room];
+                        container.querySelector('.status-text').textContent = state === 1 ? 'ON' : 'OFF';
+                        container.setAttribute('data-status', state === 1 ? 'on' : 'off');
+                        container.classList.toggle('active', state === 1);
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching states:', error));
+    </script>
 </body>
 </html>
