@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Retrieve the data-room value
             const roomNumber = container.getAttribute('data-room');
             
-            // Send data to control_lights.php
-            fetch('../backend/control_lights.php', {
+            // Send data to webcontrol.php
+            fetch('../control/webcontrol.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
