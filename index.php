@@ -1,6 +1,3 @@
-3:19 PM
-Chesca
-Chesca Duatin
 <?php
 session_start();
 ?>
