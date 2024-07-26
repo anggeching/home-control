@@ -16,56 +16,119 @@ body {
     position: relative;
 }
 
-.container {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-h2 {
-    color: #b7afaf;
-    margin-bottom: 20px;
-}
-
-.auth-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: white;
-    border-radius: 8px;
+.dialog-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(154, 145, 145, 0.373);
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 220px;
+    text-align: center;
+    z-index: 1000;
 }
 
-.form input {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 100%;
+.dialog-box h3 {
+    margin-bottom: 20px;
+    color: #e7e2e2;
 }
 
-.form button {
+.dialog-box button {
     padding: 10px 20px;
-    margin: 10px 0;
+    font-size: 16px;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #5a9abf;
+    margin: 0 10px;
+    background-color: #2c3e50;
+    color: #e7e2e2;
     cursor: pointer;
 }
 
-.form p {
-    margin-top: 10px;
+.dialog-box button:hover {
+    background-color: #496a90;
 }
 
-.hidden {
+.buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+h2 {
+    position: absolute;
+    top: -5px;
+    left: 20px;
+    font-size: 30px;
+    color: #b7afaf;
+}
+
+.sign-up {
+    background-color: #2c3e50;
+    color: #b7afaf;
+}
+
+.log-in {
+    background-color: #2c3e50;
+    color: #b7afaf;
+}
+
+.form-container {
     display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(154, 145, 145, 0.373);
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 400px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #e7e2e2;
+}
+
+input {
+    margin: 15px 0;
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2c3e50;
+    color: #e7e2e2;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #496a90;
 }

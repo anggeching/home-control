@@ -50,3 +50,5 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('notifications', JSON.stringify(notifications));
     }
 });
+
+
