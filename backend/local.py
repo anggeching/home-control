@@ -3,20 +3,20 @@ import time
 import serial
 
 # Set up the serial connection to the Arduino
-ser = serial.Serial('COM3', 9600)  # Update to COM port 3
+ser = serial.Serial('COM3', 9600)  # Update to your COM port
 
 def get_light_states():
     try:
-        response = requests.get('http://localhost/home-control/backend/light_states.txt')
+        response = requests.get('http://localhost/home-control/dB/states.php')
         response.raise_for_status()  # Raise an error for bad HTTP responses
         print(f"Response Text: {response.text}")  # Debugging line
         return response.json()
     except requests.exceptions.RequestException as e:
         print(f"HTTP Request failed: {e}")
-        return {}
+        return []
     except ValueError as e:
         print(f"JSON decoding failed: {e}")
-        return {}
+        return []
 
 def control_arduino(room, state):
     ser.write(f'{room}:{state}\n'.encode())
@@ -32,7 +32,9 @@ def main():
     previous_states = {}
     while True:
         light_states = get_light_states()
-        for room, state in light_states.items():
+        for entry in light_states:
+            room = entry['room']
+            state = entry['state']
             if previous_states.get(room) != state:
                 control_arduino(room, state)
                 previous_states[room] = state

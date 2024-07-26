@@ -6,7 +6,7 @@ require_once './conn.php';
 
 try {
     // Prepare and execute SQL query
-    $stmt = $conn->prepare('SELECT room, state, name FROM states');
+    $stmt = $conn->prepare('SELECT room, state FROM states');
     $stmt->execute();
 
     // Fetch all results
@@ -16,8 +16,8 @@ try {
     $data = array();
     foreach ($rows as $row) {
         $data[$row['room']] = array(
-            'state' => $row['state'],
-            'name'  => $row['name']
+            'room' => $row['room'],
+            'state'  => $row['state']
         );
     }
 
