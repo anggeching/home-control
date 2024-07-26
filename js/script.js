@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: 'container=' + encodeURIComponent(roomNumber) + '&state=' + encodeURIComponent(newState)
+                body: 'room=' + encodeURIComponent(roomNumber) + '&state=' + encodeURIComponent(newState)
             })
             .then(response => response.text())
             .then(data => {
@@ -50,5 +50,3 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('notifications', JSON.stringify(notifications));
     }
 });
-
-
