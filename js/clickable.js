@@ -80,7 +80,7 @@ document.getElementById('logInFormContent').addEventListener('submit', function(
 
     // Create a temporary link element and trigger a click event to redirect
     const tempLink = document.createElement('a');
-    tempLink.href = 'front-end/home.html';
+    tempLink.href = 'front-end/home.php';
     tempLink.style.display = 'none'; // Hide the link element
     document.body.appendChild(tempLink); // Append it to the body
     tempLink.click(); // Trigger the click event
