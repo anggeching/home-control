@@ -27,6 +27,14 @@ nav {
   justify-content: flex-end; /* Align the nav items to the right */
 }
 
+nav h2 {
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  font-size: 30px;
+  color: #b7afaf;
+}
+
 nav ul {
   list-style: none;
   display: flex;
@@ -137,7 +145,6 @@ nav ul li a:hover {
 
 
 
-
 /* Status Wrapper */
 .status-wrapper {
   display: flex;
@@ -173,7 +180,6 @@ nav ul li a:hover {
   color: #333;
   font-weight: bold; /* Added bold text */
 }
-
 
 
 /* Notifications Section Styling */
@@ -226,3 +232,4 @@ nav ul li a:hover {
 #clear-notifications:hover {
   background-color: #c0392b;
 }
+

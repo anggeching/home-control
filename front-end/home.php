@@ -15,6 +15,7 @@
 </head>
 <body>
     <nav>
+    <h2>Home Automation</h2>
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="notif.html">Notifications</a></li>

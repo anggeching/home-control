@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const signUpBtn = document.getElementById('signUpBtn');
     const logInBtn = document.getElementById('logInBtn');
-    const dialogBox = document.getElementById('dialogBox');
     const userBtn = document.getElementById('userBtn');
     const adminBtn = document.getElementById('adminBtn');
     const signUpForm = document.getElementById('signUpForm');
@@ -50,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
 
 
 document.getElementById('signUpBtn').addEventListener('click', function() {

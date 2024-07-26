@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 ?>
@@ -37,9 +38,8 @@ session_start();
     <div id="signUpForm" class="form-container">
         <form action="register_query.php" method="POST" id="signUpFormContent">
             <h3>SIGN UP</h3>
-            <input type="text" placeholder="Name" name="name" required>
-            <input type="email" placeholder="Email" name="email" required>
-            <input type="password" placeholder="Password" name="password" required>
+            <input type="text" placeholder="Username" name = "username" required>
+            <input type="password" placeholder="Password" name = "password" required>
             <button type="submit">Sign Up</button>
         </form>
     </div>
@@ -54,13 +54,7 @@ session_start();
         </form>
     </div>
 
-    <!-- Dialog Box -->
-    <div id="dialogBox" class="dialog-box">
-        <h3>Are you a:</h3>
-        <button id="userBtn">User</button>
-        <button id="adminBtn">Admin</button>
-    </div>
-
     <script src="js/clickable.js"></script>
 </body>
 </html>
+
