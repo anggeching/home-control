@@ -7,49 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const logInForm = document.getElementById('logInForm');
     let currentAction = ''; // Keeps track of whether "Sign Up" or "Login" was clicked
 
-    // Function to show the dialog box
-    function showDialog(action) {
-        currentAction = action;
-        dialogBox.style.display = 'block';
+    // Function to hide all forms and show the desired form
+    function showForm(formToShow) {
         signUpForm.style.display = 'none';
         logInForm.style.display = 'none';
+        formToShow.style.display = 'block';
     }
 
-    // Function to hide the dialog box
-    function hideDialog() {
-        dialogBox.style.display = 'none';
-    }
-
-    // Event listeners for "Sign Up" and "Login" buttons
-    signUpBtn.addEventListener('click', function(event) {
-        event.preventDefault();
-        showDialog('signUp');
-    });
-
-    logInBtn.addEventListener('click', function(event) {
-        event.preventDefault();
-        showDialog('logIn');
-    });
-
-    userBtn.addEventListener('click', function() {
-        hideDialog();
-        if (currentAction === 'signUp') {
-            signUpForm.style.display = 'block';
-        } else if (currentAction === 'logIn') {
-            logInForm.style.display = 'block';
-        }
-    });
-
-    adminBtn.addEventListener('click', function() {
-        hideDialog();
-        if (currentAction === 'signUp') {
-            signUpForm.style.display = 'block';
-        } else if (currentAction === 'logIn') {
-            logInForm.style.display = 'block';
-        }
-    });
 });
-
 
 document.getElementById('signUpBtn').addEventListener('click', function() {
     document.getElementById('signUpForm').style.display = 'block';
@@ -61,14 +26,36 @@ document.getElementById('logInBtn').addEventListener('click', function() {
     document.getElementById('signUpForm').style.display = 'none';
 });
 
-// Handle Sign Up Form Submission
-document.getElementById('signUpFormContent').addEventListener('submit', function(e) {
+//Handle Sign Up Form Submission
+document.getElementById('.signUpFormContent').addEventListener('submit', function(e) {
     e.preventDefault();
-    // Here, you would typically send the form data to the server to create a new user
-    alert('Sign Up Successful!'); // Replace with actual sign up logic
-    document.getElementById('signUpForm').style.display = 'none';
-    document.getElementById('logInForm').style.display = 'block'; // Show login form after signup
+    showForm(logInForm);
+    alert("Sign up Successful");
 });
+
+function displayMessage(message, isSuccess) {
+    // Create the alert box
+    const alertBox = document.createElement('div');
+    alertBox.classList.add('alert');
+    alertBox.textContent = message;
+
+    // Apply styles based on success or failure
+    if (isSuccess) {
+        alertBox.classList.add('alert-success');
+    } else {
+        alertBox.classList.add('alert-danger');
+    }
+
+    // Append the alert box to the body
+    document.body.appendChild(alertBox);
+
+    // Fade out and remove the alert box after a few seconds
+    setTimeout(() => {
+        alertBox.classList.add('fade-out');
+        setTimeout(() => alertBox.remove(), 1000); // Remove element after fade-out
+    }, 3000); // Display for 3 seconds
+}
+
 
 // Handle Log In Form Submission
 document.getElementById('logInFormContent').addEventListener('submit', function(e) {

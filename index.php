@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 ?>
@@ -22,39 +21,32 @@ session_start();
     </div>
 
     <?php if(isset($_SESSION['message'])): ?>
-                <div class="alert alert-<?php echo $_SESSION['message']['alert'] ?> msg"><?php echo $_SESSION['message']['text'] ?></div>
-                <script>
-                    (function() {
-                        setTimeout(function(){
-                            document.querySelector('.msg').remove();
-                        },3000)
-                    })();
-                </script>
-            <?php 
-                endif;
-                unset($_SESSION['message']);
-            ?>
+        <script>
+            alert("<?php echo $_SESSION['message']['text'] ?>");
+        </script>
+        <?php 
+            unset($_SESSION['message']);
+        ?>
+    <?php endif; ?>
 
     <div id="signUpForm" class="form-container">
-        <form action="register_query.php" method="POST" id="signUpFormContent">
+        <form action="./backend/register_query.php" method="POST" class="signUpFormContent">
             <h3>SIGN UP</h3>
-            <input type="text" placeholder="Username" name = "username" required>
-            <input type="password" placeholder="Password" name = "password" required>
-            <button type="submit">Sign Up</button>
+            <input type="text" placeholder="Username" name="username" required>
+            <input type="password" placeholder="Password" name="password" required>
+            <button type="submit" name="register">Sign Up</button>
         </form>
     </div>
-
+    
     <div id="logInForm" class="form-container">
-        <form action="../backend/login_query.php" method="POST" id="logInFormContent">
-
+        <form action="./backend/login_query.php" method="POST" id="logInFormContent">
             <h3>LOGIN</h3>
-            <input type="text" placeholder="Username" name = "username" required>
-            <input type="password" placeholder="Password" name = "password" required>
-            <button type="submit" >Login</button>
+            <input type="text" placeholder="Username" name="username" required>
+            <input type="password" placeholder="Password" name="password" required>
+            <button type="submit" name="login">Login</button>
         </form>
     </div>
 
     <script src="js/clickable.js"></script>
 </body>
 </html>
-
