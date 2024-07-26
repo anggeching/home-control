@@ -9,7 +9,7 @@ if (isset($_SESSION['user'])) {
     $stmt->execute([$mem_id]);
 
     unset($_SESSION['user']);
-    $_SESSION['message'] = array("text" => "You have logged out.", "alert" => "info");
+    $_SESSION['message'] = array("text" => "You have successfully logged out!", "alert" => "info");
 }
 
 header('location: ../index.php');

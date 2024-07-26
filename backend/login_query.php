@@ -24,20 +24,20 @@ if (isset($_POST['login'])) {
             $stmt->execute([$fetch['mem_id']]);
 
             echo "<script>
-                    alert('Login successful');
+                    alert('Login successful!');
                     window.location.href = '../front-end/home.php';
                   </script>";
         } else {
             // Debugging statement: Login failed
             echo "<script>
-                    alert('Login failed for Username: $username');
+                    alert('Login failed!');
                     window.location.href = '../index.php';
                   </script>";
         }
     } else {
         // Debugging statement: Username or password field empty
         echo "<script>
-                alert('Username or Password field is empty');
+                alert('Username or Password field is empty!');
                 window.location.href = '../index.php';
               </script>";
     }

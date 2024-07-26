@@ -46,9 +46,10 @@ nav ul li {
 }
 
 nav ul li a {
-  color: #ecf0f1;
+  color: #b7afaf;
   text-decoration: none;
   font-size: 1.2rem;
+  font-weight: bold;
   padding: 0.5rem 1rem;
   transition: background-color 0.3s ease;
 }
@@ -67,7 +68,7 @@ nav ul li a:hover {
 .header-text h1 {
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
-  color: #ded5d5;
+  color: #b7afaf;
   font-size: 2.5rem;
   margin: 0;
 }
@@ -92,7 +93,7 @@ nav ul li a:hover {
 .icon-container {
   text-align: center;
   background: #c9c3c3d3;
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -187,8 +188,8 @@ nav ul li a:hover {
   width: 70%; /* Set a fixed width for the section */
   margin: 2rem auto;
   padding: 1rem;
-  background-color: #fff;
-  border-radius: 10px;
+  background-color: #c9c3c3d3;
+  border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -201,16 +202,16 @@ nav ul li a:hover {
 .notifications-section th, .notifications-section td {
   padding: 0.75rem;
   text-align: center; /* Center align text */
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #6d6b6b;
 }
 
 .notifications-section th {
-  background-color: #f4f4f4;
+  background-color: #cdd0d391;
   font-weight: bold;
 }
 
 .notifications-section tr:hover {
-  background-color: #f9f9f9;
+  background-color: #d0dbe5;
 }
 
 .notifications-section td:last-child {
@@ -221,10 +222,11 @@ nav ul li a:hover {
   display: block;
   margin: 1rem auto;
   padding: 0.5rem 1rem;
-  background-color: #e74c3c;
-  color: #5fa84b;
+  background-color: #A52A2A;
+  font-weight: bold;
+  color: #ded5d5;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
