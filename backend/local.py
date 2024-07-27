@@ -20,7 +20,7 @@ def get_light_states():
         return []
 
 def update_slide_switch_states(states):
-    url = 'http://localhost/home-control/dB/webcontrol.php'
+    url = 'http://localhost/home-control/control/control.php'
     try:
         response = requests.post(url, json=states)
         response.raise_for_status()  # Raise an error for bad HTTP responses

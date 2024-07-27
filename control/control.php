@@ -15,6 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "UPDATE states SET state = :state, last_updated = CURRENT_TIMESTAMP WHERE room = :room";
             $stmt = $conn->prepare($sql);
 
+            // Debug: Print received JSON data
+            error_log("Received JSON data: " . print_r($json, true));
+
             // Loop through each switch state and update the database
             foreach ($json as $pin => $state) {
                 $room = 0;
@@ -29,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $room = 4;
                         break;
                     default:
+                        error_log("Invalid pin: $pin");
                         continue; // Skip invalid pin values
                 }
                 $state = intval($state);
