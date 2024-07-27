@@ -7,10 +7,11 @@ import json
 ser = serial.Serial('COM3', 9600)  # Update to your COM port
 
 def update_slide_switch_states(states):
+    url = 'http://localhost/home-control/control/mancontrol.php'
     try:
         # Debugging: Print the data being sent
-        print(f"Sending data to manual_control.php: {states}")
-        response = requests.post('http://localhost/home-control/control/manual_control.php', json=states)
+        print(f"Sending data to webcontrol.php: {states}")
+        response = requests.post(url, json=states)
         response.raise_for_status()  # Raise an error for bad HTTP responses
         print(f"Switch states updated: {states}")
     except requests.exceptions.RequestException as e:
