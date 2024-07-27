@@ -34,9 +34,9 @@
             <p>Motion Sensor</p>
         </div>
         <div class="icon-container">
-            <!-- Light Dependent Resistor Icon -->
-            <img class="icon icon-light" src="../assets/img/ldr.png" alt="Light Dependent Resistor">
-            <p>Light Dependent Resistor</p>
+            <!-- Outdoor Light Icon -->
+            <img class="icon icon-light" src="../assets/img/outdoor.png" alt="Light Dependent Resistor">
+            <p>Outdoor Light</p>
         </div>
         <div class="icon-container">
             <!-- Temperature Icon -->
@@ -50,17 +50,9 @@
         <h1>Home Control</h1>
     </header>
 
-    <section class="icons-section grid-3x2">
+    <section class="icons-section grid-2x2">
         <!-- Icon Containers (Static HTML) -->
         <!-- Note: The data-room attributes should match the IDs in the database -->
-        <div class="icon-container" data-room="0">
-            <img class="icon icon-example-1" src="../assets/img/outdoorlight.png" alt="Outdoor Light">
-            <p>Outdoor Light</p>
-            <div class="status-wrapper">
-              <span class="status-indicator"></span>
-              <p class="status-text">OFF</p>
-          </div>
-        </div>
         <div class="icon-container" data-room="1"> 
             <img class="icon icon-example-2" src="../assets/img/livingroom.png" alt="Living Room Light">
             <p>Living Room Light</p>
@@ -70,16 +62,8 @@
           </div>
         </div>
         <div class="icon-container" data-room="2">
-            <img class="icon icon-example-3" src="../assets/img/roomlight.png" alt="Room Light">
-            <p>Room Light</p>
-            <div class="status-wrapper">
-              <span class="status-indicator"></span>
-              <p class="status-text">OFF</p>
-          </div>
-        </div>
-        <div class="icon-container" data-room="3">
-            <img class="icon icon-example-4" src="../assets/img/doorlock.png" alt="Door Lock 1">
-            <p>Door Lock 1</p>
+            <img class="icon icon-example-3" src="../assets/img/bedroomlight.png" alt="Bedroom Light">
+            <p>Bedroom Light</p>
             <div class="status-wrapper">
               <span class="status-indicator"></span>
               <p class="status-text">OFF</p>
@@ -93,9 +77,9 @@
               <p class="status-text">OFF</p>
           </div>
         </div>
-        <div class="icon-container" data-room="5">
-            <img class="icon icon-example-6" src="../assets/img/doorlock.png" alt="Door Lock 2">
-            <p>Door Lock 2</p>
+        <div class="icon-container" data-room="3">
+            <img class="icon icon-example-4" src="../assets/img/cabinet.png" alt="Cabinet">
+            <p>Cabinet</p>
             <div class="status-wrapper">
               <span class="status-indicator"></span>
               <p class="status-text">OFF</p>
