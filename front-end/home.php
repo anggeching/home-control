@@ -55,7 +55,7 @@
         <!-- Note: The data-room attributes should match the IDs in the database -->
         <div class="icon-container" data-room="1"> 
             <img class="icon icon-example-2" src="../assets/img/livingroom.png" alt="Living Room Light">
-            <p>Living Rom Light</p>
+            <p>Living Room Light</p>
             <div class="status-wrapper">
               <span class="status-indicator"></span>
               <p class="status-text">OFF</p>
