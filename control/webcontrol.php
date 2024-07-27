@@ -6,6 +6,7 @@
 require '../dB/conn.php'; // Include your database connection file
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
     // Check if the necessary POST parameters are set
     if (isset($_POST['room']) && isset($_POST['state'])) {
         // Retrieve the POST parameters

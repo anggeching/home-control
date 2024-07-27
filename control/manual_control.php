@@ -4,7 +4,7 @@
 require '../dB/conn.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['switch_state'])) {
-    $switch_state = $_POST['switch_state'] === 'on' ? 1 : 0; // Convert 'on' to 1 and 'off' to 0
+    $switch_state = $_POST['switch_state'] === 'ON' ? 1 : 0; // Convert 'on' to 1 and 'off' to 0
     $timestamp = date('Y-m-d H:i:s');
 
     try {

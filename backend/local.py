@@ -5,40 +5,42 @@ import serial
 # Set up the serial connection to the Arduino
 ser = serial.Serial('COM3', 9600)  # Update to your COM port
 
-def get_light_states():
+def update_slide_switch_state(room, state):
     try:
-        response = requests.get('http://localhost/home-control/dB/states.php')
+        # Debugging: Print the data being sent
+        print(f"Sending data to manual_control.php: room={room}, switch_state={state}")
+        response = requests.post('http://localhost/home-control/control/manual_control.php', data={'room': room, 'switch_state': state})
         response.raise_for_status()  # Raise an error for bad HTTP responses
-        print(f"Response Text: {response.text}")  # Debugging line
-        return response.json()
+        print(f"Switch state updated for room {room}: {state}")
     except requests.exceptions.RequestException as e:
         print(f"HTTP Request failed: {e}")
-        return []
-    except ValueError as e:
-        print(f"JSON decoding failed: {e}")
-        return []
 
-def control_arduino(room, state):
-    ser.write(f'{room}:{state}\n'.encode())
-
-def reset_lights():
-    # Send a reset command to the Arduino
-    ser.write('RESET\n'.encode())
-    print("Sent reset command to Arduino.")
+def read_slide_switch():
+    while ser.in_waiting:
+        line = ser.readline().decode().strip()
+        if line.startswith("ROOM:"):
+            parts = line.split(", ")
+            room = parts[0].split(":")[1]
+            state = parts[1].split(":")[1]
+            # Debugging: Print the switch state read from Arduino
+            print(f"Read from Arduino: ROOM:{room}, STATE:{state}")
+            update_slide_switch_state(room, state)
 
 def main():
-    reset_lights()  # Reset all lights to off before starting
-
-    previous_states = {}
+    last_state = {}  # To keep track of the last state for each room
     while True:
-        light_states = get_light_states()
-        for entry in light_states:
-            room = entry['room']
-            state = entry['state']
-            if previous_states.get(room) != state:
-                control_arduino(room, state)
-                previous_states[room] = state
-        time.sleep(1)
+        if ser.in_waiting:
+            line = ser.readline().decode().strip()
+            if line.startswith("ROOM:"):
+                parts = line.split(", ")
+                room = parts[0].split(":")[1]
+                state = parts[1].split(":")[1]
+                if room not in last_state or state != last_state[room]:  # Only update if the state has changed
+                    # Debugging: Print the new switch state read from Arduino
+                    print(f"Switch state changed for room {room}: {state}")
+                    update_slide_switch_state(room, state)
+                    last_state[room] = state
+        time.sleep(0.1)  # Small delay to prevent overwhelming the serial buffer
 
 if __name__ == "__main__":
     main()
