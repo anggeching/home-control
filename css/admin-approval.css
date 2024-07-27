@@ -50,9 +50,9 @@
 }
 
 .admin-approval-section button.reject {
-    background-color: #6b2c2c; /* Match the reject button color with notifications section */
+    background-color: #A52A2A; /* Match the reject button color with notifications section */
 }
 
 .admin-approval-section button:hover {
-    background-color: #e74c3c; /* Match the hover background color with notifications section */
+    background-color: #A52A2A; /* Match the hover background color with notifications section */
 }
