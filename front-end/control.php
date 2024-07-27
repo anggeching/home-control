@@ -17,7 +17,6 @@ $pendingUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Debugging output
 // print_r($pendingUsers); // Uncomment this line to see the raw output
-
 ?>
 <html lang="en">
 <head>
@@ -68,6 +67,26 @@ $pendingUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
     </section>
 
+    <header class="header-text">
+        <h1>Notifications</h1>
+    </header>
+
+    <section class="notifications-section">
+        <table id="notifications-table">
+            <thead>
+                <tr>
+                    <th>Notification</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody id="notifications-list">
+                <!-- Notifications will be added here dynamically -->
+            </tbody>
+        </table>
+        <button id="clear-notifications">Clear Notifications</button>
+    </section>
+
     <script src="../js/script.js"></script>
+    <script src="../js/notif-script.js"></script>
 </body>
 </html>

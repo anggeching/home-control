@@ -10,6 +10,7 @@ if (isset($_POST['login'])) {
         if ($username == 'Pam' && $password == '123456') {
             // Admin login successful
             $_SESSION['admin'] = true;
+            $_SESSION['username'] = $username; // Store the username in the session
 
             // Update admin status to 'active'
             $sqlUpdateAdminStatus = "UPDATE member SET status='active' WHERE username=?";
@@ -17,6 +18,7 @@ if (isset($_POST['login'])) {
             $stmt->execute([$username]);
 
             echo "<script>
+                    sessionStorage.setItem('username', '" . addslashes($username) . "'); // Store username in sessionStorage
                     alert('Admin login successful!');
                     window.location.href = '../front-end/admin.php';
                   </script>";
@@ -37,12 +39,14 @@ if (isset($_POST['login'])) {
                       </script>";
             } else {
                 $_SESSION['user'] = $fetch['mem_id'];
+                $_SESSION['username'] = $username; // Store the username in the session
 
                 $sqlUpdateStatus = "UPDATE member SET status='active' WHERE mem_id=?";
                 $stmt = $conn->prepare($sqlUpdateStatus);
                 $stmt->execute([$fetch['mem_id']]);
 
                 echo "<script>
+                        sessionStorage.setItem('username', '" . addslashes($username) . "'); // Store username in sessionStorage
                         alert('Login successful!');
                         window.location.href = '../front-end/home.php';
                       </script>";

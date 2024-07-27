@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const containers = document.querySelectorAll('.icon-container');
+    const username = sessionStorage.getItem('username')
 
     containers.forEach(container => {
         // Initialize the data-status attribute if it doesn't exist
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Add notification to local storage
             const itemName = container.querySelector('p').textContent;
-            addNotification(`${itemName} turned ${statusText}`);
+            addNotification(`${itemName} turned ${statusText} by ${username}`);
         });
     });
 
@@ -49,4 +50,5 @@ document.addEventListener('DOMContentLoaded', () => {
         notifications.push({ message, timestamp });
         localStorage.setItem('notifications', JSON.stringify(notifications));
     }
+    
 });

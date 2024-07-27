@@ -2,11 +2,8 @@
 <?php
     require '../dB/conn.php'; // connecting to dB
     session_start(); 
-    /*
-    if(!ISSET($_SESSION['user'])){ // redirecting user to index if not login properly
-        header('location:../index.php');
-    }
-    */
+    // Fetch the username from the session
+    $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Unknown'; // Retrieve username from session
 ?>
 <html lang="en">
 <head>
@@ -86,6 +83,11 @@
           </div>
         </div>
     </section>
+
+        <!-- Pass the username to JavaScript -->
+        <script>
+        const username = '<?php echo $username; ?>';
+    </script>
 
     <script src="../js/script.js"></script>
     <script>
