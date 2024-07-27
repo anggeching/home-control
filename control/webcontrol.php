@@ -1,5 +1,5 @@
 <?php
-// this file update state (0/1) of  and time stamp in database
+// this file update state (0/1) of  and time stamp in database based on user input in home.php
 
 
 
