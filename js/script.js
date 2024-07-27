@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const roomNumber = container.getAttribute('data-room');
             
             // Send data to webcontrol.php
-            fetch('../control/webcontrol.php', {
+            fetch('../control/control.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
