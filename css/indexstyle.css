@@ -150,8 +150,8 @@ nav ul li a:hover {
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    height: 50px; /* Set height of the buttons to match the navbar */
-    line-height: 30px; /* Vertically center text in the buttons */
+    height: 10px; /* Set height of the buttons to match the navbar */
+    line-height: 1px; /* Vertically center text in the buttons */
 }
 
 .button:hover {

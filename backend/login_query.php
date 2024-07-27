@@ -7,6 +7,23 @@ if (isset($_POST['login'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
+        if ($username == 'Pam' && $password == '123456') {
+            // Admin login successful
+            $_SESSION['admin'] = true;
+            $_SESSION['username'] = $username; // Store the username in the session
+
+            // Update admin status to 'active'
+            $sqlUpdateAdminStatus = "UPDATE member SET status='active' WHERE username=?";
+            $stmt = $conn->prepare($sqlUpdateAdminStatus);
+            $stmt->execute([$username]);
+
+            echo "<script>
+                    sessionStorage.setItem('username', '" . addslashes($username) . "'); // Store username in sessionStorage
+                    alert('Admin login successful!');
+                    window.location.href = '../front-end/admin.php';
+                  </script>";
+            exit();
+        }
 
         $sql = "SELECT * FROM member WHERE username=? AND password=?";
         $query = $conn->prepare($sql);
@@ -14,28 +31,33 @@ if (isset($_POST['login'])) {
         $row = $query->rowCount();
         $fetch = $query->fetch();
 
-
         if ($row > 0) {
-            $_SESSION['user'] = $fetch['mem_id'];
+            if ($fetch['status'] === 'pending') {
+                echo "<script>
+                        alert('Your account is still pending approval.');
+                        window.location.href = '../index.php';
+                      </script>";
+            } else {
+                $_SESSION['user'] = $fetch['mem_id'];
+                $_SESSION['username'] = $username; // Store the username in the session
 
+                $sqlUpdateStatus = "UPDATE member SET status='active' WHERE mem_id=?";
+                $stmt = $conn->prepare($sqlUpdateStatus);
+                $stmt->execute([$fetch['mem_id']]);
 
-            $sqlUpdateStatus = "UPDATE member SET status='active' WHERE mem_id=?";
-            $stmt = $conn->prepare($sqlUpdateStatus);
-            $stmt->execute([$fetch['mem_id']]);
-
-            echo "<script>
-                    alert('Login successful!');
-                    window.location.href = '../front-end/home.php';
-                  </script>";
+                echo "<script>
+                        sessionStorage.setItem('username', '" . addslashes($username) . "'); // Store username in sessionStorage
+                        alert('Login successful!');
+                        window.location.href = '../front-end/home.php';
+                      </script>";
+            }
         } else {
-            // Debugging statement: Login failed
             echo "<script>
                     alert('Login failed!');
                     window.location.href = '../index.php';
                   </script>";
         }
     } else {
-        // Debugging statement: Username or password field empty
         echo "<script>
                 alert('Username or Password field is empty!');
                 window.location.href = '../index.php';
