@@ -8,7 +8,7 @@ if (isset($_POST['register'])) {
             $username = $_POST['username'];
             $password = $_POST['password'];
             $role = 'user';
-            $status = 'inactive';  // Set default status to inactive
+            $status = 'pending';  // Set default status to pending
 
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -27,7 +27,7 @@ if (isset($_POST['register'])) {
 
             // Set session message for success
             $_SESSION['message'] = [
-                'text' => 'Registration successful!',
+                'text' => 'Registration successful! Waiting for admin approval.',
                 'alert' => 'success'
             ];
 
