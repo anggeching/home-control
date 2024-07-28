@@ -77,7 +77,7 @@
               <p class="status-text">OFF</p>
           </div>
         </div>
-        <div class="icon-container" data-room="3">
+        <div class="icon-container" data-room="5">
             <img class="icon icon-example-4" src="../assets/img/cabinet.png" alt="Cabinet">
             <p>Cabinet</p>
             <div class="status-wrapper">

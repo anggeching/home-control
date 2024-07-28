@@ -1,11 +1,12 @@
 <?php
-// this file update state (0/1) of  and time stamp in database
+// this file update state (0/1) of  and time stamp in database based on user input in home.php
 
 
 
 require '../dB/conn.php'; // Include your database connection file
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
     // Check if the necessary POST parameters are set
     if (isset($_POST['room']) && isset($_POST['state'])) {
         // Retrieve the POST parameters

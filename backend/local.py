@@ -1,6 +1,7 @@
 import requests
 import time
 import serial
+import json
 
 # Set up the serial connection to the Arduino
 ser = serial.Serial('COM3', 9600)  # Update to your COM port
@@ -9,7 +10,6 @@ def get_light_states():
     try:
         response = requests.get('http://localhost/home-control/dB/states.php')
         response.raise_for_status()  # Raise an error for bad HTTP responses
-        print(f"Response Text: {response.text}")  # Debugging line
         return response.json()
     except requests.exceptions.RequestException as e:
         print(f"HTTP Request failed: {e}")
@@ -18,27 +18,61 @@ def get_light_states():
         print(f"JSON decoding failed: {e}")
         return []
 
-def control_arduino(room, state):
-    ser.write(f'{room}:{state}\n'.encode())
+def update_slide_switch_states(room):
+    url = 'http://localhost/home-control/control/hardware_control.php'
+    try:
+        response = requests.post(url, json={"room": room, "toggle": True})
+        response.raise_for_status()  # Raise an error for bad HTTP responses
+        print(f"Switch state toggled for room: {room}")
+    except requests.exceptions.RequestException as e:
+        print(f"HTTP Request failed: {e}")
 
-def reset_lights():
-    # Send a reset command to the Arduino
-    ser.write('RESET\n'.encode())
-    print("Sent reset command to Arduino.")
+def read_slide_switch():
+    while ser.in_waiting:
+        line = ser.readline().decode().strip()
+        if line.startswith("{") and line.endswith("}"):
+            try:
+                states = json.loads(line)  # Parse the JSON string
+                print(f"Read from Arduino: {states}")
+                room = states.get("room")
+                if room is not None:
+                    update_slide_switch_states(room)
+            except json.JSONDecodeError as e:
+                print(f"JSON decoding failed: {e}")
+
+def update_database(room, state):
+    url = 'http://localhost/home-control/dB/states.php'
+    data = {'room': room, 'state': state}
+    try:
+        response = requests.post(url, data=data)
+        response.raise_for_status()  # Raise an error for bad HTTP responses
+        print(f"Successfully updated database for room {room} with state {state}")
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to update database for room {room}: {e}")
+
+def control_arduino(room, state):
+    # Map room to corresponding LED pin on Arduino
+    room_to_pin = {
+        1: 5,
+        2: 6,
+        4: 10,
+        5: 11
+    }
+    if room in room_to_pin:
+        pin = room_to_pin[room]
+        ser.write(f'{pin}:{state}\n'.encode())
+        print(f"Sent to Arduino: pin {pin}, state {state}")
 
 def main():
-    reset_lights()  # Reset all lights to off before starting
-
-    previous_states = {}
     while True:
         light_states = get_light_states()
-        for entry in light_states:
-            room = entry['room']
-            state = entry['state']
-            if previous_states.get(room) != state:
+        for state_info in light_states:
+            room = state_info.get('room')
+            state = state_info.get('state')
+            if room is not None and state is not None:
                 control_arduino(room, state)
-                previous_states[room] = state
-        time.sleep(1)
+        read_slide_switch()
+        time.sleep(0.1)  # Small delay to prevent overwhelming the serial buffer
 
 if __name__ == "__main__":
     main()
