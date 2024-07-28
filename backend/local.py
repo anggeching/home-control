@@ -10,7 +10,6 @@ def get_light_states():
     try:
         response = requests.get('http://localhost/home-control/dB/states.php')
         response.raise_for_status()  # Raise an error for bad HTTP responses
-        #print(f"Response Text: {response.text}")  # Debugging line
         return response.json()
     except requests.exceptions.RequestException as e:
         print(f"HTTP Request failed: {e}")
@@ -20,7 +19,7 @@ def get_light_states():
         return []
 
 def update_slide_switch_states(room):
-    url = 'http://localhost/home-control/control/control.php'
+    url = 'http://localhost/home-control/control/hardware_control.php'
     try:
         response = requests.post(url, json={"room": room, "toggle": True})
         response.raise_for_status()  # Raise an error for bad HTTP responses
@@ -52,7 +51,17 @@ def update_database(room, state):
         print(f"Failed to update database for room {room}: {e}")
 
 def control_arduino(room, state):
-    ser.write(f'{room}:{state}\n'.encode())
+    # Map room to corresponding LED pin on Arduino
+    room_to_pin = {
+        1: 5,
+        2: 6,
+        4: 10,
+        5: 11
+    }
+    if room in room_to_pin:
+        pin = room_to_pin[room]
+        ser.write(f'{pin}:{state}\n'.encode())
+        print(f"Sent to Arduino: pin {pin}, state {state}")
 
 def main():
     while True:
