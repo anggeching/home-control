@@ -10,7 +10,7 @@ def get_light_states():
     try:
         response = requests.get('http://localhost/home-control/dB/states.php')
         response.raise_for_status()  # Raise an error for bad HTTP responses
-        print(f"Response Text: {response.text}")  # Debugging line
+        #print(f"Response Text: {response.text}")  # Debugging line
         return response.json()
     except requests.exceptions.RequestException as e:
         print(f"HTTP Request failed: {e}")
@@ -19,12 +19,12 @@ def get_light_states():
         print(f"JSON decoding failed: {e}")
         return []
 
-def update_slide_switch_states(states):
+def update_slide_switch_states(room):
     url = 'http://localhost/home-control/control/control.php'
     try:
-        response = requests.post(url, json=states)
+        response = requests.post(url, json={"room": room, "toggle": True})
         response.raise_for_status()  # Raise an error for bad HTTP responses
-        print(f"Switch states updated: {states}")
+        print(f"Switch state toggled for room: {room}")
     except requests.exceptions.RequestException as e:
         print(f"HTTP Request failed: {e}")
 
@@ -35,9 +35,21 @@ def read_slide_switch():
             try:
                 states = json.loads(line)  # Parse the JSON string
                 print(f"Read from Arduino: {states}")
-                update_slide_switch_states(states)
+                room = states.get("room")
+                if room is not None:
+                    update_slide_switch_states(room)
             except json.JSONDecodeError as e:
                 print(f"JSON decoding failed: {e}")
+
+def update_database(room, state):
+    url = 'http://localhost/home-control/dB/states.php'
+    data = {'room': room, 'state': state}
+    try:
+        response = requests.post(url, data=data)
+        response.raise_for_status()  # Raise an error for bad HTTP responses
+        print(f"Successfully updated database for room {room} with state {state}")
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to update database for room {room}: {e}")
 
 def control_arduino(room, state):
     ser.write(f'{room}:{state}\n'.encode())
@@ -46,9 +58,10 @@ def main():
     while True:
         light_states = get_light_states()
         for state_info in light_states:
-            room = state_info['room']
-            state = state_info['state']
-            control_arduino(room, state)
+            room = state_info.get('room')
+            state = state_info.get('state')
+            if room is not None and state is not None:
+                control_arduino(room, state)
         read_slide_switch()
         time.sleep(0.1)  # Small delay to prevent overwhelming the serial buffer
 
