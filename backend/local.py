@@ -71,7 +71,7 @@ def read_sensor_data():
                 try:
                     data = json.loads(line)
                     temperature = data.get("temperature")
-                    ir_detected = data.get("irDetected")
+                    ir_detected = data.get("motionDetected")
                     light = data.get("light")
                     light_status = data.get("lightStatus")
 

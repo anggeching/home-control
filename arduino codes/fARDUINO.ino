@@ -4,7 +4,7 @@
 
 // Define analog pins
 #define DHT11_PIN A5  // Analog pin for DHT11 sensor
-#define IR_SENSOR_PIN A4 // Analog pin for IR sensor
+#define IR_SENSOR_PIN 4 // Analog pin for IR sensor
 #define LDR_PIN A0     // Analog pin for LDR
 #define LED_PIN A1     // Output pin for LED
 
