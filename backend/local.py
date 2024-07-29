@@ -4,7 +4,7 @@ import serial
 import json
 
 # Set up the serial connection to the Arduino
-ser = serial.Serial('COM3', 9600)  # Update to your COM port
+ser = serial.Serial('COM7', 9600)  # Update to your COM port
 
 def get_light_states():
     try:
