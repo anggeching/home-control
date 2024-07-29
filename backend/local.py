@@ -2,9 +2,16 @@ import requests
 import time
 import serial
 import json
+import threading
 
 # Set up the serial connection to the Arduino
 ser = serial.Serial('COM3', 9600)  # Update to your COM port
+
+# Shared data
+sensor_data = {
+    "temperature": None,
+    "irDetected": None
+}
 
 def get_light_states():
     try:
@@ -63,7 +70,41 @@ def control_arduino(room, state):
         ser.write(f'{pin}:{state}\n'.encode())
         print(f"Sent to Arduino: pin {pin}, state {state}")
 
+def read_sensor_data():
+    while True:
+        try:
+            if ser.in_waiting > 0:
+                line = ser.readline().decode('utf-8').strip()
+
+                if line.startswith("{") and line.endswith("}"):  # Check if line is JSON
+                    try:
+                        data = json.loads(line)
+                        temperature = data.get("temperature")
+                        ir_detected = data.get("irDetected")
+                        light = data.get("light")
+                        light_status = data.get("lightStatus")
+
+                        # Process sensor data (e.g., print or use it in your application)
+                        # For example:
+                        print(f"Temperature: {temperature} °C, IR Sensor: {'Someone is detected' if ir_detected else 'No motion detected'}, Light Level: {light}, Light Status: {'ON' if light_status else 'OFF'}")
+
+                        # Save sensor data to JSON file
+                        with open('./sensor_data.json', 'w') as f:  # Updated relative path to parent directory
+                            json.dump(data, f)
+
+                    except json.JSONDecodeError:
+                        # Handle JSON decoding error silently
+                        pass
+        except Exception:
+            # Handle general exception silently
+            pass
+
 def main():
+    # Start the sensor data reading in a separate thread
+    sensor_thread = threading.Thread(target=read_sensor_data)
+    sensor_thread.daemon = True  # Daemonize thread to exit when main program exits
+    sensor_thread.start()
+
     while True:
         light_states = get_light_states()
         for state_info in light_states:
