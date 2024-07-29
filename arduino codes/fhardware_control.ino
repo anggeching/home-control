@@ -1,19 +1,9 @@
-#include <Servo.h>
-Servo servo1;
-
 const int buttonPins[] = {8, 12, 13}; // Pins connected to the buttons
 const int ledPins[] = {5, 6, 10, 11}; // Pins connected to the LEDs
 int buttonStates[3] = {0, 0, 0};      // Array to hold the current state of each button
 int lastButtonStates[3] = {0, 0, 0};  // Array to hold the last state of each button
 
-const int controlPin = 2; // Define the pin to read the signal from
-
 void setup() {
-  // Servo setup
-  servo1.attach(9); // Attach the servo to pin 9
-  pinMode(controlPin, INPUT); // Set the control pin as an input
-  servo1.write(0);  // Initialize servo at 0 degrees
-
   // Setup for buttons
   for (int i = 0; i < 3; i++) {
     pinMode(buttonPins[i], INPUT_PULLUP); // Set the button pins as input with internal pull-up resistors
@@ -30,7 +20,6 @@ void setup() {
 
 void loop() {
   hardware_control();
-  web_control();
   delay(10); // Small delay for stability
 }
 
@@ -50,16 +39,6 @@ void hardware_control() {
     }
     
     lastButtonStates[i] = buttonStates[i];
-  }
-}
-
-void web_control() {
-  // Servo control
-  int signalState = digitalRead(controlPin); // Read the signal state
-  if (signalState == HIGH) {
-    servo1.write(180); // If the control pin is high, rotate servo to 180 degrees
-  } else {
-    servo1.write(90); // If the control pin is low, rotate servo to 0 degrees
   }
 
   // Read from Serial
