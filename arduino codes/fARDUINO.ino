@@ -69,7 +69,8 @@ void read_sensors() {
     return;
   }
 
-  // Read IR sensor
+  // Read IR sensor for motion detection
+  static bool previousDetection = false;
   int detectionCount = 0;
   for (int i = 0; i < DETECTION_THRESHOLD; i++) {
     int sensorValue = analogRead(IR_SENSOR_PIN); // Read the value from the IR sensor
@@ -79,7 +80,9 @@ void read_sensors() {
     delay(1); // Small delay between readings
   }
 
-  bool irDetected = (detectionCount >= DETECTION_THRESHOLD);
+  bool currentDetection = (detectionCount >= DETECTION_THRESHOLD);
+  bool motionDetected = (currentDetection != previousDetection);
+  previousDetection = currentDetection;
 
   // Read LDR sensor
   int light = analogRead(LDR_PIN);
@@ -91,7 +94,7 @@ void read_sensors() {
   // Create JSON object
   StaticJsonDocument<256> jsonDoc;
   jsonDoc["temperature"] = (int)temperature;
-  jsonDoc["irDetected"] = irDetected;
+  jsonDoc["irDetected"] = motionDetected; // Use motionDetected instead of irDetected
   jsonDoc["light"] = light;
   jsonDoc["lightStatus"] = lightStatus;
 
@@ -102,6 +105,7 @@ void read_sensors() {
   // Print JSON data
   Serial.println(output);
 }
+
 
 void hardware_control() {
   // Manual Control
