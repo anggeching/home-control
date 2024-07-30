@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 {"temperature": 27, "irDetected": false, "light": 12, "lightStatus": true}
+=======
+{"temperature": 29, "irDetected": false, "light": 10, "lightStatus": true}
+>>>>>>> Stashed changes
