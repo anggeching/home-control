@@ -4,6 +4,7 @@
     session_start(); 
     // Fetch the username from the session
     $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Unknown'; // Retrieve username from session
+
 ?>
 <html lang="en">
 <head>
@@ -28,17 +29,17 @@
         <div class="icon-container">
             <!-- Motion Sensor Icon -->
             <img class="icon icon-motion-sensor" src="../assets/img/walk.png" alt="Motion Sensor">
-            <p>Motion Sensor</p>
+            <p>Motion Sensor: <span id="motion-sensor-status">N/A</span></p>
         </div>
         <div class="icon-container">
             <!-- Outdoor Light Icon -->
             <img class="icon icon-light" src="../assets/img/outdoor.png" alt="Light Dependent Resistor">
-            <p>Outdoor Light</p>
+            <p>Outdoor Light: <span id="light-status">N/A</span></p>
         </div>
         <div class="icon-container">
             <!-- Temperature Icon -->
             <img class="icon icon-temperature" src="../assets/img/temperature.png" alt="Temperature">
-            <p>Temperature</p>
+            <p>Temperature: <span id="temperature-value">N/A</span> °C</p>
         </div>
     </section>
 
@@ -106,6 +107,33 @@
                 });
             })
             .catch(error => console.error('Error fetching states:', error));
+
+            function fetchSensorData() {
+            fetch('../control/get_sensor_data.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error(data.error);
+                        return;
+                    }
+
+                    // Update motion sensor status
+                    const irStatus = data.irDetected ? 'Someone is detected' : 'No motion detected';
+                    document.getElementById('motion-sensor-status').textContent = irStatus;
+
+                    // Update temperature
+                    document.getElementById('temperature-value').textContent = data.temperature || 'N/A';
+
+                    // Update LDR light status
+                    const lightStatus = data.lightStatus ? 'ON' : 'OFF';
+                    document.getElementById('light-status').textContent = lightStatus;
+                })
+                .catch(error => console.error('Error fetching sensor data:', error));
+        }
+
+        // Fetch sensor data initially and then every 5 seconds
+        fetchSensorData();
+        setInterval(fetchSensorData, 250);
     </script>
 </body>
 </html>
