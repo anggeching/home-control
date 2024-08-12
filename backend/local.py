@@ -96,7 +96,3 @@ class HomeControl:
                     self.control_arduino(room, state)
             self.read_slide_switch()
             time.sleep(0.1)
-
-if __name__ == "__main__":
-    home_control = HomeControl('COM4', 9600)
-    home_control.main_loop()
