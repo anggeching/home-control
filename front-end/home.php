@@ -2,10 +2,10 @@
 <?php
 	require '../dB/conn.php'; // connecting to dB
 	session_start(); 
-	
+	/*
 	if(!ISSET($_SESSION['user'])){ // redirecting user to index if not login properly
 		header('location:../index.php');
-	}
+	}*/
 	
 ?>
 <html lang="en">
