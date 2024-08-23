@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 {"room": "4"}
+=======
+{"temperature": 32, "irDetected": false, "light": 245, "lightStatus": false}
+>>>>>>> Stashed changes
