@@ -152,7 +152,7 @@ void webcontrol() {
   if (signalState == HIGH) {
     servo1.write(90); // If the control pin is high, rotate servo to 180 degrees
   } else {
-    servo1.write(180); // If the control pin is low, rotate servo to 0 degrees
+    servo1.write(0); // If the control pin is low, rotate servo to 0 degrees
   }
 
   // Read from Serial
